@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool closeStrings(string word1, string word2) {
+        unordered_map<char,int>map1;
+        unordered_map<char,int>map2;
+        int len1=word1.length();
+        int len2=word2.length();
+        if(len1!=len2)  return false;
+        for(auto i:word1){
+            map1[i]++;
+        }
+        for(auto j:word2){
+            map2[j]++;
+        }
+        if(map1.size()!=map2.size()) return false;
+        //check if all the elements are present or not
+        for(auto m:map1){
+            if(map2.find(m.first)==map2.end()){
+                return false;
+            }
+        }
+        //track the frequency of the frequencies
+         unordered_map<int ,int>freq1;
+         unordered_map<int ,int>freq2;
+        for(auto k:map1){
+            freq1[k.second]++;
+        }
+        for(auto l:map2){
+            freq2[l.second]++;
+        }
+       return freq1==freq2;
+    }
+};
